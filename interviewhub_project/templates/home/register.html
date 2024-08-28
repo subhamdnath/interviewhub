@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/css/style_register.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  
+<body>
+  <div class="container">
+    <div class="title">Create your profile</div>
+    <div class="content">
+      <form method="post">
+        {% csrf_token %}
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Full Name*</span>
+            <input type="text" name="full_name" placeholder="Enter your name" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Username*</span>
+            <input type="text" name="username" placeholder="Enter your username" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Email ID*</span>
+            <input type="email" name="email" placeholder="Enter your email" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Phone Number*</span>
+            <input type="number" name="phone_number" placeholder="Enter your phone number" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Age*</span>
+            <input type="number" name="age" placeholder="Enter your age" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">State*</span>
+            <select name="state" required>
+              <option value="" disabled selected>Select your state</option>
+              {% for state in INDIAN_STATES_AND_UTS %}
+                <option value="{{ state.0 }}">{{ state.1 }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Gender*</span>
+            <select name="gender" required>
+              <option value="" disabled selected>Select your gender</option>
+              {% for gender in GENDER_CHOICES %}
+                <option value="{{ gender.0 }}">{{ gender.1 }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Role*</span>
+            <select name="role" required>
+              <option value="" disabled selected>Select your role</option>
+              {% for role in ROLE_CHOICES %}
+                <option value="{{ role.0 }}">{{ role.1 }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Password*</span>
+            <input type="password" name="password" placeholder="(Minimum 6 characters)" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Confirm Password*</span>
+            <input type="password" name="confirm_password" placeholder="Re-enter your password" required>
+          </div>
+        </div>
+
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+
+        {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              {% if "password" in message.tags %}
+                <p>{{ message }}</p>
+              {% elif "phone_number" in message.tags %}
+                <p>{{ message }}</p>
+              {% elif "email" in message.tags %}
+                <p>{{ message }} <a href="/login/">Login</a></p>
+              {% elif "register" in message.tags %}
+                <p>{{ message }}</p>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</body>
+</html>

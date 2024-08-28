@@ -4,11 +4,11 @@ from home.models import MyUser
 
 
 class UserAdmin(BaseUserAdmin):
-    list_display = ["email", "full_name", "username", "phone_number", "gender", "is_admin"]
+    list_display = ["full_name", "email", "phone_number", "state", "gender", "role", "is_admin"]
     list_filter = ["is_admin"]
     fieldsets = [
         (None, {"fields": ["email", "password"]}),
-        ("Personal info", {"fields": ["full_name", "username", "phone_number", "gender" ]}),
+        ("Personal info", {"fields": ["full_name", "phone_number", "state", "gender", "role" ]}),
         ("Permissions", {"fields": ["is_admin"]}),
     ]
 
@@ -17,7 +17,7 @@ class UserAdmin(BaseUserAdmin):
             None,
             {
                 "classes": ["wide"],
-                "fields": ["email", "full_name", "username", "phone_number", "gender", "password1", "password2", "is_admin"]
+                "fields": ["full_name", "email", "phone_number", "state", "gender", "role", "password1", "password2", "is_admin"]
             },
         ),
     ]

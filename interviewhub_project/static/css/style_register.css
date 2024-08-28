@@ -143,4 +143,8 @@ form .user-details .input-box{
   .container .content .category{
     flex-direction: column;
   }
+  form .messages p{
+    color: red;
+    font-size: 14px;
+  }
 }
