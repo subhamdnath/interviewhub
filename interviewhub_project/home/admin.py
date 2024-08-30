@@ -1,15 +1,15 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from home.models import MyUser
+from home.models import User
 
 
 class UserAdmin(BaseUserAdmin):
-    list_display = ["full_name", "email", "phone_number", "state", "gender", "role", "is_admin"]
-    list_filter = ["is_admin"]
+    list_display = ["username", "email", "password", "first_name", "last_name", "mobile_no", "state", "gender", "role"]
+    list_filter = ["role"]
     fieldsets = [
         (None, {"fields": ["email", "password"]}),
-        ("Personal info", {"fields": ["full_name", "phone_number", "state", "gender", "role" ]}),
-        ("Permissions", {"fields": ["is_admin"]}),
+        ("Personal info", {"fields": ["username", "first_name", "last_name", "mobile_no", "state", "gender", "role" ]}),
+    
     ]
 
     add_fieldsets = [
@@ -17,7 +17,7 @@ class UserAdmin(BaseUserAdmin):
             None,
             {
                 "classes": ["wide"],
-                "fields": ["full_name", "email", "phone_number", "state", "gender", "role", "password1", "password2", "is_admin"]
+                "fields": ["username", "email", "first_name", "last_name", "mobile_no", "state", "gender", "role", "password1", "password2"]
             },
         ),
     ]
@@ -25,4 +25,4 @@ class UserAdmin(BaseUserAdmin):
     ordering = ["email"]
     filter_horizontal = []
 
-admin.site.register(MyUser, UserAdmin)
+admin.site.register(User, UserAdmin)

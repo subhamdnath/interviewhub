@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login
-from home.models import MyUser
+from home.models import User
 
 
 
@@ -32,12 +32,12 @@ def register_view(request):
                 messages.error(request, "Password and confirm password do not match.", extra_tags='password_confirm_password')
                 return redirect('register')
 
-            if MyUser.objects.filter(email=email).exists():
+            if User.objects.filter(email=email).exists():
                 messages.error(request, "An account already exists with this email.", extra_tags='email_exists')
                 return redirect('register')
             
 
-            user = MyUser.objects.create(full_name = full_name, email = email,
+            user = User.objects.create(full_name = full_name, email = email,
                                         phone_number = phone_number, age = age,
                                         state = state, gender = gender, role = role,
                                         password = password)

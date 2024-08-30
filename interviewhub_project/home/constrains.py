@@ -41,7 +41,6 @@ INDIAN_STATES_AND_UTS = (
 )
 
 
-
 GENDER_CHOICES = (("Male", "Male"), 
                 ("Female", "Female"),
                 ('Other','Other'),
@@ -60,3 +59,14 @@ MARITAL_STATUS_CHOICES = (("Single", "Single"),
 
 HIRING_FOR_CHOICE = (("Company", "Company"),
                     ("individual", "individual"))
+
+''' Choice fileds for employer app '''
+
+JOB_TYPE_TYPES = (("Work fom office", "Work fom office"),
+                  ("Remote", "Remote"),
+                  ("Hybrid", "Hybrid"))
+
+EMPLOYMENT_TYPES = (('Full time', 'Full time'),
+                    ('Part time', 'Part time'),
+                    ('Internship', 'Internship'))
+                    

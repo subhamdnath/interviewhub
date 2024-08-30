@@ -19,13 +19,16 @@ class Candidate(models.Model):
     date_of_birth = models.DateField(null=True, blank=True)
     language = models.CharField(max_length=255, null=True, blank=True)
     marital_status = models.CharField(max_length=30, default="Prefer not to say", choices=MARITAL_STATUS_CHOICES)
+    
     created_on = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_on = models.DateTimeField(auto_now=True, null=True, blank=True)
 
+    class Meta:
+        managed = True
+        db_table = "tbl_candidate"
+    
     def __str__(self):
         return f"{self.user}-{self.user.email}"
-    class Meta:
-        db_table = "tbl_candidate"
 
 
 class Employer(models.Model):
@@ -35,10 +38,15 @@ class Employer(models.Model):
     official_email = models.EmailField(null=True, blank=True)
     company_address = models.CharField(max_length=255, null=True, blank=True)
 
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    class Meta:
+        managed = True
+        db_table = "tbl_employer"
+
     def __str__(self):
         return f"{self.user}-{self.user.email}"
-    class Meta:
-        db_table = "tbl_employer"
 
     
 

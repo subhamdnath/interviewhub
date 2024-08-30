@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
-    'profiles'
+    'profiles',
+    'employer',
+    'candidate',
 ]
 
 MIDDLEWARE = [
@@ -143,5 +145,5 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = "home.MyUser"
+AUTH_USER_MODEL = "home.User"
 
