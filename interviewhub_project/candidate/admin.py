@@ -1,3 +1,10 @@
-from django.contrib import admin
+# from django.contrib import admin
+# from candidate.models import *
 
-# Register your models here.
+# @admin.register(ApplyJob)
+# class ApplyJobAdmin(admin.ModelAdmin):
+#     list_display = [
+#     'candidate',
+#     # 'job',
+#     'applied_date',
+# ]

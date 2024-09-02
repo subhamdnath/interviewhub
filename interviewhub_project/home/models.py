@@ -17,7 +17,7 @@ class User(AbstractUser):
     updated_on = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ["username"]
 
     class Meta:
         managed = True
@@ -27,14 +27,24 @@ class User(AbstractUser):
         return f"{self.email}-{self.role}"
     
 
-            
-
-
-class AboutUs(models.Model):
-    pass
 
 class Review(models.Model):
-    pass
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    review = models.CharField(max_length=255, null=True, blank=True)
+
+    created_on = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_on = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    class Meta:
+        managed = True
+        db_table = "tbl_review"
+
+    def __str__(self):
+        return f"{self.user.email} - {self.user.email}"
+
+
+
 
 
 

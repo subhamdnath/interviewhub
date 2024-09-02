@@ -58,7 +58,8 @@ MARITAL_STATUS_CHOICES = (("Single", "Single"),
                         ("Prefer not to say", "Prefer not to say"))
 
 HIRING_FOR_CHOICE = (("Company", "Company"),
-                    ("individual", "individual"))
+                    ("Individual", "Individual"))
+
 
 ''' Choice fileds for employer app '''
 

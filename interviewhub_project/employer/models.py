@@ -15,7 +15,7 @@ class Job(models.Model):
     job_category = models.CharField(max_length=255, null=True, blank=True)
     job_type = models.CharField(max_length=255, choices=JOB_TYPE_TYPES, null=True, blank=True)
     job_description = models.TextField()
-
+    
     no_of_openings = models.PositiveBigIntegerField(null=True, blank=True)
     required_skills = models.CharField(max_length=255, null=True, blank=True)
     expected_salary = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
@@ -38,5 +38,5 @@ class Job(models.Model):
 
 
 
-class Companies(models.Model):
-    pass
+
+
