@@ -20,11 +20,11 @@ class Job(models.Model):
     required_skills = models.CharField(max_length=255, null=True, blank=True)
     expected_salary = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     years_of_experience = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True, blank=True)
-    department = models.CharField(max_length=255, null=True, blank=True)
-    candidates_applied = models.PositiveBigIntegerField(default=0, null=True, blank=True)
+    department = models.CharField(max_length=255, null=True, blank=True) 
     employment_type = models.CharField(max_length=20, choices= EMPLOYMENT_TYPES, null=True, blank=True)
     education = models.CharField(max_length=255, null=True, blank=True)
 
+    candidates_applied = models.PositiveBigIntegerField(default=0, null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)

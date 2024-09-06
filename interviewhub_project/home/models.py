@@ -12,6 +12,11 @@ class User(AbstractUser):
     state = models.CharField(max_length=50, choices=INDIAN_STATES_AND_UTS,)
     gender = models.CharField(max_length=20, default= "Prefer not to say", choices=GENDER_CHOICES) 
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default="Admin", null=True, blank=True)
+    password = models.CharField(max_length=255, null=False, blank=False)
+
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_superuser = models.BooleanField(default=False)
 
     created_on = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_on = models.DateTimeField(auto_now=True, null=True, blank=True)
@@ -26,8 +31,6 @@ class User(AbstractUser):
     def __str__(self):
         return f"{self.email}-{self.role}"
     
-
-
 class Review(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)

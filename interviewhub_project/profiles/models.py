@@ -32,6 +32,7 @@ class Candidate(models.Model):
 
 
 class Employer(models.Model):
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     hiring_for = models.CharField(max_length=30, default="Company",choices=HIRING_FOR_CHOICE)
     pan_number = models.CharField(max_length=10, null=True, blank=True)
