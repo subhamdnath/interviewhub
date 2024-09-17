@@ -50,6 +50,11 @@ ROLE_CHOICES = (("Candidate", "Candidate"),
                 ("Employer", "Employer"),
                 ("Admin", "Admin"))
 
+SOCIAL_TYPE = (("Google, Google"),
+               ("Instagram", "Instagram"),
+               ("Facebook", "Facebook"),
+               ("Apple", "Apple"))
+
 
 ''' Choice fileds for profiles app '''
 

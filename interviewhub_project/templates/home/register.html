@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-    <link rel="stylesheet" href="/static/css/style_register.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="/static/css/style_register.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
 <body>
   <div class="container">
     <div class="title">Create your profile</div>
@@ -14,9 +14,15 @@
       <form method="post">
         {% csrf_token %}
         <div class="user-details">
+
           <div class="input-box">
-            <span class="details">Full Name*</span>
-            <input type="text" name="full_name" placeholder="Enter your name" required>
+            <span class="details">First Name*</span>
+            <input type="text" name="first_name" placeholder="Enter your first name" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Last Name*</span>
+            <input type="text" name="last_name" placeholder="Enter your last name" required>
           </div>
 
           <div class="input-box">
@@ -31,7 +37,7 @@
 
           <div class="input-box">
             <span class="details">Phone Number*</span>
-            <input type="number" name="phone_number" placeholder="Enter your phone number" required>
+            <input type="number" name="mobile_no" placeholder="Enter your phone number" required>
           </div>
 
           <div class="input-box">
@@ -87,15 +93,7 @@
         {% if messages %}
           <ul class="messages">
             {% for message in messages %}
-              {% if "password" in message.tags %}
-                <p>{{ message }}</p>
-              {% elif "phone_number" in message.tags %}
-                <p>{{ message }}</p>
-              {% elif "email" in message.tags %}
-                <p>{{ message }} <a href="/login/">Login</a></p>
-              {% elif "register" in message.tags %}
-                <p>{{ message }}</p>
-              {% endif %}
+              <p>{{ message }}</p>
             {% endfor %}
           </ul>
         {% endif %}
@@ -104,3 +102,61 @@
   </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+<form method="post">
+  {% csrf_token %}
+
+  <label for="username">Username:</label>
+  <input type="text" name="username" placeholder="username" required><br>
+
+  <label for="first_name">First Name:</label>
+  <input type="text" name="first_name" required><br>
+
+  <label for="last_name">Last Name:</label>
+  <input type="text" name="last_name" required><br>
+
+  <label for="email">Email:</label>
+  <input type="email" name="email" required><br>
+
+  <label for="mobile_no">Mobile Number:</label>
+  <input type="text" name="mobile_no" required><br>
+
+  <label for="state">State:</label>
+  <select name="state" required>
+      {% for state in states %}
+          <option value="{{ state.0 }}">{{ state.1 }}</option>
+      {% endfor %}
+  </select><br>
+
+  <label for="gender">Gender:</label>
+  <select name="gender" required>
+      {% for gender in genders %}
+          <option value="{{ gender.0 }}">{{ gender.1 }}</option>
+      {% endfor %}
+  </select><br>
+
+  <label for="role">Role:</label>
+  <select name="role" required>
+      {% for role in roles %}
+          <option value="{{ role.0 }}">{{ role.1 }}</option>
+      {% endfor %}
+  </select><br>
+
+  <label for="password">Password:</label>
+  <input type="password" name="password" required><br>
+
+  <label for="confirm_password">Confirm Password:</label>
+  <input type="password" name="confirm_password" required><br>
+
+  <button type="submit">Register</button>
+</form>

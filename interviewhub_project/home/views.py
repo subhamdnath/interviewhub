@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.hashers import make_password
 import re
 from home.models import User
-from django.contrib.auth.hashers import make_password
+from home.constrains import INDIAN_STATES_AND_UTS, GENDER_CHOICES, ROLE_CHOICES
+
+
 
 
 @csrf_exempt
@@ -57,6 +60,10 @@ def register_view(request):
                 messages.error(request, "Password must have at least 6 characters.", extra_tags='password_character')
                 return redirect('register')
             
+            if len(mobile_no) != 10:
+                messages.error(request, "Please enter a valid 10-digit mobile number.", extra_tags='invalid_mobile')
+                return redirect('register')
+            
             if password != confirm_password:
                 messages.error(request, "Password and confirm password do not match.", extra_tags='password_confirm_password')
                 return redirect('register')
@@ -64,6 +71,11 @@ def register_view(request):
             if User.objects.filter(email=email).exists():
                 messages.error(request, "An account already exists with this email.", extra_tags='email_exists')
                 return redirect('register')
+            
+            if User.objects.filter(username=username).exists():
+                messages.error(request, "An account already exists with this username.", extra_tags='username_exists')
+                return redirect('register')
+            
          
             email_pattern = r'[a-zA-Z0-9._%+-]+@gmail\.com$'
             if not re.match(email_pattern, email):
@@ -85,8 +97,15 @@ def register_view(request):
             print(f"Error occurred: {e}")
             messages.error(request, "Something went wrong during registration. Please try again.", extra_tags='register_error')
             return redirect('register')
+        
+    context = {
+        'states': INDIAN_STATES_AND_UTS,
+        'genders': GENDER_CHOICES,
+        'roles': ROLE_CHOICES
+    }
+
     
-    return render(request, "home/register.html")
+    return render(request, "home/register.html", context)
 
 
 
