@@ -31,8 +31,12 @@ class EmployerAdmin(admin.ModelAdmin):
     'hiring_for',
     'pan_number',
     'official_email',
-    'company_address',
-    'created_at',
-    'updated_at'
+    'address',
+    'city',
+    'state',
+    'pin_code',
+    'country',
+    'created_on',
+    'updated_on'
 ]
 

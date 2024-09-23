@@ -34,13 +34,18 @@ class Candidate(models.Model):
 class Employer(models.Model):
     
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    hiring_for = models.CharField(max_length=30, default="Company",choices=HIRING_FOR_CHOICE)
+    hiring_for = models.CharField(max_length=30, default="Company",choices=HIRING_FOR_CHOICE, null=True)
     pan_number = models.CharField(max_length=10, null=True, blank=True)
     official_email = models.EmailField(null=True, blank=True)
-    company_address = models.CharField(max_length=255, null=True, blank=True)
 
-    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    address = models.CharField(max_length=255, null=True)
+    city = models.CharField(max_length=255, null=True)
+    state = models.CharField(max_length=40, choices=INDIAN_STATES_AND_UTS, null=True)
+    pin_code = models.CharField(max_length=100, null=True)
+    country = models.CharField(max_length=255, null=True)
+    
+    created_on = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_on = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     class Meta:
         managed = True
@@ -48,6 +53,11 @@ class Employer(models.Model):
 
     def __str__(self):
         return f"{self.user}-{self.user.email}"
+    
+    # def save(self, *args, **kwargs):
+    #     if self.official_email:
+    #         self.official_email = self.normalize_email(self.official_email)
+    #     super(Employer, self).save(*args, **kwargs)
     
 
 

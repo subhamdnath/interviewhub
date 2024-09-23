@@ -4,7 +4,12 @@ from home.models import *
 
 
 class UserAdmin(BaseUserAdmin):
-    list_display = ["username", "email", "password", "first_name", "last_name", "mobile_no", "state", "gender", "role", "created_on", "updated_on"]
+    list_display = ["id", "username", "email", "password", "first_name",
+                    "last_name", "social_id", "mobile_no",
+                    "state", "gender", "role", "social_id", 
+                    "social_type", "is_active", "is_staff",
+                    "is_superuser", "is_candidate", "is_employee",
+                    "is_admin", "created_on", "updated_on"]
     list_filter = ["role"]
     fieldsets = [
         (None, {"fields": ["email", "password"]}),

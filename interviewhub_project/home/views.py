@@ -5,9 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 import re
 from home.models import User
-from home.constrains import INDIAN_STATES_AND_UTS, GENDER_CHOICES, ROLE_CHOICES
-
-
+from home.constrains import INDIAN_STATES_AND_UTS, GENDER_CHOICES, ROLE_CHOICES, SOCIAL_TYPE
 
 
 @csrf_exempt
@@ -101,12 +99,12 @@ def register_view(request):
     context = {
         'states': INDIAN_STATES_AND_UTS,
         'genders': GENDER_CHOICES,
-        'roles': ROLE_CHOICES
+        'roles': ROLE_CHOICES,
+        'socials': SOCIAL_TYPE
     }
 
     
     return render(request, "home/register.html", context)
-
 
 
 @csrf_exempt
@@ -136,10 +134,8 @@ def login_view(request):
     return render(request, "home/login.html")
 
 
-
 def home_view(request):
     return render(request, "home/home.html")
-
 
 
 def job_view(request):
